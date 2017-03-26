@@ -37,11 +37,13 @@ public class TransitionSystem {
         }
         return list;
     }
-
+    // Checks if there is a transition from any state to one of the given states, and return those who can.
     public ArrayList<State> ctlEX(ArrayList<State> tempStates){
         ArrayList<State> list = new ArrayList<>();
         for (State state:this.states             ) {
             for(int transition:state.transitions){
+
+
                 for (State temp: tempStates                ) {
                     if(transition == temp.numb){
                         list.add(state);
@@ -55,19 +57,39 @@ public class TransitionSystem {
 
         return list;
     }
-
+    // Returns all states which in any way can go to one of the given states in any number of transitions.
     public ArrayList<State> ctlEF(ArrayList<State> states){
         ArrayList<State> list = new ArrayList<>();
 
         return list;
     }
-
+    // checks which states always end in one of the given states no matter what, and return those who can
     public ArrayList<State> ctlAX(ArrayList<State> states){
         ArrayList<State> list = new ArrayList<>();
 
+        ArrayList<Integer> idList = new ArrayList<>();
+        for (State state : states){
+
+            idList.add(state.numb);
+
+        }
+        list.addAll(this.states);
+
+        for (int i = 0; i < list.size(); i++){
+
+            for (int trasition : list.get(i).transitions){
+                if(!idList.contains(trasition)){
+                    list.remove(i);
+
+                    i--;
+                }
+            }
+        }
+        System.out.println(list.size());
         return list;
 
     }
+    //Checks if any of the given states can transition to a state that isn't in the given states and return those.
     public ArrayList<State> ctlAG(ArrayList<State> states){
         ArrayList<Integer> idList = new ArrayList<>();
         for (State state : states){

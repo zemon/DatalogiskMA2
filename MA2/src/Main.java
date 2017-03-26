@@ -12,7 +12,8 @@ public class Main {
         ArrayList<State> apList = ts.ctlAP("c");
         ArrayList<State> agList = ts.ctlAG(apList);
         ArrayList<State> exList = ts.ctlEX(agList);
-        exList=ts.ctlEX(exList);
+        //exList=ts.ctlEX(exList);
+        ArrayList<State> axList = ts.ctlAX(exList);
 
 
 
@@ -36,13 +37,13 @@ public class Main {
             System.out.println(state.toString());
         }
         System.out.println("\n " + ts.ctlCheckInitialStates(exList));
-/*
+
         System.out.println("AX");
 
-        for (State state : exList){
+        for (State state : axList){
             System.out.println(state.toString());
         }
-
+/*
         System.out.println("EF");
 
         for (State state : exList) {
